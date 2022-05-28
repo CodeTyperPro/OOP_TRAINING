@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1653758276 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Animal_Util.cpp
+	"Animal.h"
+	"Bird.h"
+	"FlyingBird.h"
+	"NotFlyingBird.h"
+
+1653756748 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Animal.h
+	<iostream>
+	<string.h>
+	<vector>
+
+1653754616 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Bird.h
+	"Animal.h"
+
+1653754490 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/FlyingBird.h
+	"Bird.h"
+
+1653754581 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/NotFlyingBird.h
+	"Bird.h"
+
+1653755220 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/FlyingBird.cpp
+	"FlyingBird.h"
+
+1653751181 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Layout.cpp
+	"Layout.h"
+
+1653751050 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Layout.h
+	<iostream>
+
+1653755199 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Bird.cpp
+	"Bird.h"
+
+1653755229 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/NotFlying.cpp
+	"NotFlyingBird.h"
+
+1653755284 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Animal.cpp
+	"Animal.h"
+
+1653758354 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/main.cpp
+	<iostream>
+	"Animal.h"
+	"Bird.h"
+	"FlyingBird.h"
+	"NotFlyingBird.h"
+	"Animal_Util.cpp"
+
+1653757244 source:/home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Types.cpp
+
+1653758432 /home/codetyper/Competitive Programming - Become a Master/oop_cpp_training/Animal_Util.cpp
+	"Animal.h"
+	"Bird.h"
+	"FlyingBird.h"
+	"NotFlyingBird.h"
+

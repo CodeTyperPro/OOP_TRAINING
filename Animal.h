@@ -1,26 +1,30 @@
-#ifndef ANIMAL_H
-#define ANIMAL_H
+#ifndef _ANIMAL_H_
+#define _ANIMAL_H_
 #include<iostream>
 #include<string.h>
+#include<vector>
 
 class Animal{
-    friend std::iostream &operator<<(std::&os, const Animal &animal);
+    friend std::ostream &operator<<(std::ostream &os, const Animal& animal);
 private:
-    static constexpr unsigned int def_id{0};
-    static constexpr const char *def_name{"Unnnamed Animal"};
+    static constexpr int def_id{0};
+    static constexpr const char * def_name{"Unnnamed Animal"};
     static constexpr bool def_isHungry{false};
-    static constexpr unsigned int def_age{0};
+    static constexpr int def_age{0};
 protected:
-    unsigned int id;
+    int id;
     std::string name;
     bool isHungry;
-    unsigned int age;
+    int age;
 public:
-    Animal() = default;
-    Animal(unsigned int age = def_id, std::string name = def_name, bool isHungry = def_isHungry, int age = def_age);
-    void blink();
-    void eat();
-    void info();
+    Animal(int id = def_id, std::string name = def_name, bool isHungry = def_isHungry, int age = def_age);
+    virtual std::string blink();
+    virtual std::string eat();
+    virtual std::string info();
+    int getId();
+    void setId(const int);
+    std::string getName();
+    void setName(const std::string name);
 };
 
 #endif

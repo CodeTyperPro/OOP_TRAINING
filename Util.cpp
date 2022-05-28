@@ -80,7 +80,6 @@ void showMenu(){
             "Operation: ";
 
     std::cin>>option;
-    bool is_okay = true;
     switch(option){
         case 'A': add_new_animal_type(); break;
         case 'L': list_all_animals_type(); break;
@@ -90,7 +89,6 @@ void showMenu(){
         case 'E': exit_(); break;
         default: 
             std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
-            is_okay = false;
             break;
     }
 

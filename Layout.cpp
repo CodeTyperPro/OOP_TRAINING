@@ -366,7 +366,7 @@ void delete_flying_bird(){
     }
 }
 
-void delete_not_flying_bird(){
+void delete_not_flying_birImportantedd(){
     std::cout<<"Delete NotFlyingBird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
@@ -378,3 +378,115 @@ void delete_not_flying_bird(){
     }
 }
 
+void display_select_animal(Animal& animal){
+    std::cout<<"What do you want to do with "<<animal.getName()<<"?"<<std::endl;
+    std::cout<<"\n"
+        "B-Blink\n"
+        "E-Eat\n"
+        "I-Info\n"
+        "Action: ";
+    
+    char action = '\0';
+    std::cin>>action;
+    action = toupper(action);
+
+    bool is_okay{true};
+    switch(action){
+        case 'B': std::cout<<animal.blink()<<std::endl; break;
+        case 'E': std::cout<<animal.eat()<<std::endl; break;
+        case 'I': std::cout<<animal.info()<<std::endl; break;
+            std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
+            is_okay = false;
+    }
+
+    if(!is_okay){
+        display_select_animal(animal);
+    }
+}
+
+void display_select_bird(Bird& bird){
+    std::cout<<"What do you want to do with "<<bird.getName()<<"?"<<std::endl;
+    std::cout<<"\n"
+        "B-Blink\n"
+        "E-Eat\n"
+        "I-Info\n"
+        "S-Sing\n"
+        "Action: ";
+    
+    char action = '\0';
+    std::cin>>action;
+    action = toupper(action);
+
+    bool is_okay{true};
+    switch(action){
+        case 'B': std::cout<<bird.blink()<<std::endl; break;
+        case 'E': std::cout<<bird.eat()<<std::endl; break;
+        case 'I': std::cout<<bird.info()<<std::endl; break;
+        case 'S': std::cout<<bird.sing()<<std::endl; break;
+            std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
+            is_okay = false;
+    }
+
+    if(!is_okay){
+        display_select_animal(bird);
+    }
+}
+
+void display_select_flying_bird(FlyingBird& flying_bird){
+
+    std::cout<<"What do you want to do with "<<flying_bird.getName()<<"?"<<std::endl;
+    std::cout<<"\n"
+        "B-Blink\n"
+        "E-Eat\n"
+        "I-Info\n"
+        "S-Sing\n"
+        "F-Fly\n"
+        "Action: ";
+    
+    char action = '\0';
+    std::cin>>action;
+    action = toupper(action);
+
+    bool is_okay{true};
+    switch(action){
+        case 'B': std::cout<<flying_bird.blink()<<std::endl; break;
+        case 'E': std::cout<<flying_bird.eat()<<std::endl; break;
+        case 'I': std::cout<<flying_bird.info()<<std::endl; break;
+        case 'S': std::cout<<flying_bird.sing()<<std::endl; break;
+        case 'F': std::cout<<flying_bird.fly()<<std::endl; break;
+            std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
+            is_okay = false;
+    }
+
+    if(!is_okay){
+        display_select_animal(flying_bird);
+    }
+}
+
+void display_select_not_flying_bird(FlyingBird& not_flying_bird){
+    std::cout<<"What do you want to do with "<<not_flying_bird.getName()<<"?"<<std::endl;
+    std::cout<<"\n"
+        "B-Blink\n"
+        "E-Eat\n"
+        "I-Info\n"
+        "S-Sing\n"
+        "Action: ";
+    
+    char action = '\0';
+    std::cin>>action;
+    action = toupper(action);
+
+    bool is_okay{true};
+    switch(action){
+        case 'B': std::cout<<not_flying_bird.blink()<<std::endl; break;
+        case 'E': std::cout<<not_flying_bird.eat()<<std::endl; break;
+        case 'I': std::cout<<not_flying_bird.info()<<std::endl; break;
+        case 'S': std::cout<<not_flying_bird.sing()<<std::endl; break;
+            std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
+            is_okay = false;
+    }
+
+    if(!is_okay){
+        display_select_animal(not_flying_bird);
+    }
+}

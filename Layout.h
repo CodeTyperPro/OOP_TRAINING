@@ -36,4 +36,9 @@ void delete_bird();
 void delete_flying_bird();
 void delete_not_flying_bird();
 
+void display_select_animal(Animal& animal);
+void display_select_bird(Bird& bird);
+void display_select_flying_bird(FlyingBird& flying_bird);
+void display_select_not_flying_bird(FlyingBird& not_flying_bird);
+
 #endif

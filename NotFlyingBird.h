@@ -13,6 +13,7 @@ public:
     virtual std::string blink();
     virtual std::string eat();
     virtual std::string info();
+    virtual std::string sing();
 };
 
 #endif

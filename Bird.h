@@ -10,7 +10,7 @@ protected:
     int wings;
 public:
     Bird(int id, std::string name, bool isHungry, int age, int wings = def_wings);
-    virtual void sing();
+    virtual std::string  sing();
     virtual std::string blink();
     virtual std::string eat();
     virtual std::string info();

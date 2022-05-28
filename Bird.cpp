@@ -4,8 +4,9 @@ Bird::Bird(int id, std::string name, bool isHungry, int age, int wings)
     : Animal{id, name, isHungry, age}, wings{wings} {
 }
 
-void Bird::sing(){
-
+std::string Bird::sing(){
+    std::string ms = name + " is singing.";
+    return ms;
 }
 
 std::ostream &operator<<(std::ostream &os, const Bird &bird){
@@ -14,17 +15,17 @@ std::ostream &operator<<(std::ostream &os, const Bird &bird){
 }
 
 std::string Bird::info(){
-    std::string ms = name + " is a Bird type Animal, currently" + (!isHungry ? " not" : "") + " hungry and " + std::to_string(age) + " years old";
+    std::string ms = name + " is a Bird type Animal, has " + std::to_string(wings) + ", currently" + (!isHungry ? " not" : "") + " hungry and " + std::to_string(age) + " years old";
     return ms;
 }
 
 std::string Bird::blink(){
-
-    return nullptr;
+    std::string ms = name + " is blinking.";
+    return ms;
 }
 
 
 std::string Bird::eat(){
-
-    return nullptr;
+    std::string ms = name + " is eating.";
+    return ms;
 }

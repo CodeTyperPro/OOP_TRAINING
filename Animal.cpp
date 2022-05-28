@@ -15,14 +15,13 @@ std::string Animal::info(){
 }
 
 std::string Animal::blink(){
-
-    return nullptr;
+    std::string ms = name + " is blinking.";
 }
 
 
 std::string Animal::eat(){
-
-    return nullptr;
+    std::string ms = name + " is eating.";
+    return ms;
 }
 
 int Animal::getId(){ return id; }

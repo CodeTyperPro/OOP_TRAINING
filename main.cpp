@@ -1,13 +1,10 @@
 #include<iostream>
-#include "Animal.h"
-#include "Bird.h"
-#include "FlyingBird.h"
-#include "NotFlyingBird.h"
-#include "Util.cpp"
+#include "Util.h"
 
 using namespace std;
 
 int main(){
-    askTypeAnimal();
+    Container items{};
+    askTypeAnimal(items);
     return 0;
 }

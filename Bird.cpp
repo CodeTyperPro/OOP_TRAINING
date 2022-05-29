@@ -10,7 +10,7 @@ std::string Bird::sing(){
 }
 
 std::ostream &operator<<(std::ostream &os, const Bird &bird){
-    os<<"[Bird => {id: "<<bird.id<<"}, name: "<<bird.name<<", isHungry: "<<bird.isHungry<<", age: "<<bird.age<<", wings: "<<bird.wings<<"}]";
+    os<<"[Bird => {id: "<<bird.id<<"}, name: "<<bird.name<<", isHungry: "<<(bird.isHungry ? "Yes" : "No")<<", age: "<<bird.age<<", wings: "<<bird.wings<<"}]";
     return os;
 }
 

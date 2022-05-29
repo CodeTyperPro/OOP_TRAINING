@@ -1,12 +1,16 @@
-#include "Layout.h"
 #include "Items.h"
+#include "Util.h"
+#include "Layout.h"
+#include "Items.cpp"
+#include<iostream>
 
 Animal read_animal(){
     std::cout<<"Reading Animal:"<<std::endl;
     std::string name;
     std::cout<<"Enter the name of the animal: ";
-    std::cin>>name;
-    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+    std::cin>>std::ws;
+    getline(std::cin, name);
+    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
 
     char option = '\0';
     std::cin>>option;
@@ -31,7 +35,8 @@ Animal read_animal(){
         std::cin>>age;
     }
 
-    Animal animal {0, name, is_Hungry, age};
+    Animal animal{0, name, is_Hungry, age};
+    //std::cin>>std::ws;
 
     return animal;
 }
@@ -40,8 +45,9 @@ Bird read_bird(){
     std::cout<<"Reading Bird:"<<std::endl;
     std::string name;
     std::cout<<"Enter the name of the bird: ";
-    std::cin>>name;
-    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+    std::cin>>std::ws;
+    getline(std::cin, name);
+    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
 
     char option = '\0';
     std::cin>>option;
@@ -49,7 +55,7 @@ Bird read_bird(){
 
     while (option != 'Y' && option != 'N'){
         std::cout<<"Enter a valid option, please!"<<std::endl;
-        std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+        std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
         std::cin>>option;
         option = toupper(option);
     }
@@ -69,7 +75,7 @@ Bird read_bird(){
     std::cout<<"Enter the wings of: ";
     int wings{};
     std::cin>>wings;
-    
+
     while(wings<0){
         std::cout<<"Enter a valid wings, please!"<<std::endl;
         std::cout<<"Enter the wings of: ";
@@ -77,16 +83,18 @@ Bird read_bird(){
     }
 
     Bird bird{0, name, is_Hungry, age, wings};
+    std::cin>>std::ws;
 
     return bird;
 }
 
-FlyingBird read_flying_bird(){    
+FlyingBird read_flying_bird(){
     std::cout<<"Reading FlyingBird:"<<std::endl;
     std::string name;
     std::cout<<"Enter the name of the FlyingBird: ";
-    std::cin>>name;
-    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+    std::cin>>std::ws;
+    getline(std::cin, name);
+    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
 
     char option = '\0';
     std::cin>>option;
@@ -94,7 +102,7 @@ FlyingBird read_flying_bird(){
 
     while (option != 'Y' && option != 'N'){
         std::cout<<"Enter a valid option, please!"<<std::endl;
-        std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+        std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
         std::cin>>option;
         option = toupper(option);
     }
@@ -114,7 +122,7 @@ FlyingBird read_flying_bird(){
     std::cout<<"Enter the wings of: ";
     int wings{};
     std::cin>>wings;
-    
+
     while(wings<0){
         std::cout<<"Enter a valid wings, please!"<<std::endl;
         std::cout<<"Enter the wings of: ";
@@ -127,22 +135,24 @@ FlyingBird read_flying_bird(){
 
     while(range<0 || range>10){
         std::cout<<"Enter a valid range, please!"<<std::endl;
-        std::cout<<"Enter the range (0-10): ";        
+        std::cout<<"Enter the range (0-10): ";
         std::cin>>range;
     }
 
-    FlyingBird flyingBird{0, name, is_Hungry, age, wings, range};
+    FlyingBird flyingBird {0, name, is_Hungry, age, wings, range};
+    std::cin>>std::ws;
 
     return flyingBird;
 }
 
 NotFlyingBird read_not_flying_bird(){
-  
+
     std::cout<<"Reading NotFlyingBird:"<<std::endl;
     std::string name;
     std::cout<<"Enter the name of the NotFlyingBird: ";
-    std::cin>>name;
-    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No)";
+    std::cin>>std::ws;
+    getline(std::cin, name);
+    std::cout<<"Is "<<name<<" hungry? (Y-Yes; N-No) R: ";
 
     char option = '\0';
     std::cin>>option;
@@ -170,7 +180,7 @@ NotFlyingBird read_not_flying_bird(){
     std::cout<<"Enter the wings of: ";
     int wings{};
     std::cin>>wings;
-    
+
     while(wings<0){
         std::cout<<"Enter a valid wings, please!"<<std::endl;
         std::cout<<"Enter the wings of: ";
@@ -181,200 +191,233 @@ NotFlyingBird read_not_flying_bird(){
     int usefulness{};
     std::cin>>usefulness;
 
-    NotFlyingBird notFlyingBird{0, name, is_Hungry, age, wings, usefulness};
+    NotFlyingBird notFlyingBird {0, name, is_Hungry, age, wings, usefulness};
+    std::cin>>std::ws;
 
     return notFlyingBird;
 }
 
-void insert_animal(){
-    items_animal->append(read_animal());
+void insert_animal(Container& container){
+    Animal animal = read_animal();
+    append(container.items_animal, animal, container);
+    std::cout<<"Animal "<<animal.getName()<<" inserted."<<std::endl;
 }
 
-void insert_bird(){
-    items_bird->append(read_bird());
+void insert_bird(Container& container){
+    Bird bird = read_bird();
+    append(container.items_bird, bird, container);
+    std::cout<<"Bird "<<bird.getName()<<" inserted."<<std::endl;
 }
 
-void insert_flying_bird(){
-    items_flying_bird->append(read_flying_bird());
+void insert_flying_bird(Container& container){
+    FlyingBird flying_bird = read_flying_bird();
+    append(container.items_flying_bird, flying_bird, container);
+    std::cout<<"FlyingBird "<<flying_bird.getName()<<" inserted."<<std::endl;
 }
 
-void insert_not_flying_bird(){
-    items_not_flying_bird->append(read_not_flying_bird());
+void insert_not_flying_bird(Container& container){
+    NotFlyingBird not_flying_bird = read_not_flying_bird();
+    append(container.items_not_flying_bird, not_flying_bird, container);
+    std::cout<<"NotFlyingBird "<<not_flying_bird.getName()<<" inserted."<<std::endl;
 }
 
-void update_animal(){   
+void update_animal(Container &container){
     std::cout<<"Updating Animal: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_animal->exist(id)){
+    if(exist(container.items_animal, id)){
         Animal update_animal = read_animal();
         update_animal.setId(id);
+        int index = getIndex(container.items_animal, id);
+        container.items_animal[index] = update_animal;
         std::cout<<"Animal with Id "<<id<<" updated."<<std::endl;
     } else{
         std::cout<<"Animal with Id "<<id<<" not updated."<<std::endl;
     }
 }
 
-void update_bird(){    
+void update_bird(Container& container){
     std::cout<<"Updating Bird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_flying_bird->exist(id)){
+    if(exist(container.items_flying_bird, id)){
         Bird update_bird = read_bird();
         update_bird.setId(id);
+
+        int index = getIndex(container.items_bird, id);
+        container.items_bird[index] =  update_bird;
         std::cout<<"Bird with Id "<<id<<" updated."<<std::endl;
     } else{
         std::cout<<"Bird with Id "<<id<<" not updated."<<std::endl;
     }
 }
 
-void update_flying_bird(){
+void update_flying_bird(Container& container){
     std::cout<<"Updating FlyingBird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_flying_bird->exist(id)){
+    if(exist(container.items_flying_bird, id)){
         FlyingBird update_flying_bird = read_flying_bird();
         update_flying_bird.setId(id);
+
+        int index = getIndex(container.items_flying_bird, id);
+        container.items_flying_bird[index] = update_flying_bird;
         std::cout<<"FlyingBird with Id "<<id<<" updated."<<std::endl;
     } else{
         std::cout<<"FlyingBird with Id "<<id<<" not updated."<<std::endl;
     }
 }
 
-void update_not_flying_bird(){
+void update_not_flying_bird(Container& container){
     std::cout<<"Updating NotFlyingBird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_not_flying_bird->exist(id)){
+    if(exist(container.items_not_flying_bird, id)){
         NotFlyingBird update_not_flying_bird = read_not_flying_bird();
         update_not_flying_bird.setId(id);
+
+        int index = getIndex(container.items_not_flying_bird, id);
+        container.items_not_flying_bird[index] = update_not_flying_bird;
         std::cout<<"NotFlyingBird with Id "<<id<<" updated."<<std::endl;
     } else{
         std::cout<<"NotFlyingBird with Id "<<id<<" not updated."<<std::endl;
     }
 }
 
-void search_animal(){
+void search_animal(Container& container){
     std::cout<<"Search Animal: "<<std::endl;
     std::cout<<"Enter the name of the animal: ";
     std::string name;
-    std::cin>>name;
+    std::cin>>std::ws;
+    getline(std::cin, name);
 
-    if(items_animal->exist(name)){
-        int index = items_animal->getIndex(name);
+    if(exist(container.items_animal, name)){
+        int index = getIndex(container.items_animal, name);
         std::cout<<"Animal found at index "<<index<<"."<<std::endl;
-        std::cout<<items_animal->getItem(index)<<std::endl;
+        std::cout<<getItem(container.items_animal, index)<<std::endl;
     }
 }
 
-void search_bird(){
+void search_bird(Container& container){
     std::cout<<"Search Bird: "<<std::endl;
     std::cout<<"Enter the name of the Bird: ";
     std::string name;
-    std::cin>>name;
+    std::cin>>std::ws;
+    getline(std::cin, name);
 
-    if(items_bird->exist(name)){
-        int index = items_bird->getIndex(name);
+    if(exist(container.items_bird, name)){
+        int index = getIndex(container.items_bird, name);
         std::cout<<"Bird found at index "<<index<<"."<<std::endl;
-        std::cout<<items_bird->getItem(index)<<std::endl;
+        std::cout<<getItem(container.items_bird, index)<<std::endl;
     }
 }
 
-void search_flying_bird(){
+void search_flying_bird(Container& container){
     std::cout<<"Search FlyingBird: "<<std::endl;
     std::cout<<"Enter the name of the FlyingBird: ";
     std::string name;
-    std::cin>>name;
+    std::cin>>std::ws;
+    getline(std::cin, name);
 
-    if(items_flying_bird->exist(name)){
-        int index = items_flying_bird->getIndex(name);
+    if(exist(container.items_flying_bird, name)){
+        int index = getIndex(container.items_flying_bird, name);
         std::cout<<"FlyingBird found at index "<<index<<"."<<std::endl;
-        std::cout<<items_flying_bird->getItem(index)<<std::endl;
+        std::cout<<getItem(container.items_flying_bird, index)<<std::endl;
     }
+
+    std::cin>>std::ws;
 }
 
-void search_not_flying_bird(){
+void search_not_flying_bird(Container& container){
     std::cout<<"Search NotFlyingBird: "<<std::endl;
     std::cout<<"Enter the name of the NotFlyingBird: ";
     std::string name;
-    std::cin>>name;
+    std::cin>>std::ws;
+    getline(std::cin, name);
 
-    if(items_not_flying_bird->exist(name)){
-        int index = items_not_flying_bird->getIndex(name);
+    if(exist(container.items_not_flying_bird, name)){
+        int index = getIndex(container.items_not_flying_bird, name);
         std::cout<<"NotFlyingBird found at index "<<index<<"."<<std::endl;
-        std::cout<<items_not_flying_bird->getItem(index)<<std::endl;
+        std::cout<<getItem(container.items_not_flying_bird, index)<<std::endl;
     }
+
+    std::cin>>std::ws;
 }
 
-void list_animals(){    
-    items_animal->display();
+void list_animals(Container& container){
+    display(container.items_animal, container);
 }
 
-void list_birds(){
-    items_bird->display();
+void list_birds(Container& container){
+    display(container.items_bird, container);
 }
 
-void list_flying_birds(){
-    items_flying_bird->display();
+void list_flying_birds(Container& container){
+    display(container.items_flying_bird, container);
 }
 
-void list_not_flying_birds(){
-    items_not_flying_bird->display();
+void list_not_flying_birds(Container& container){
+    display(container.items_not_flying_bird, container);
 }
 
-void delete_animal(){
+void delete_animal(Container& container){
     std::cout<<"Delete Animal: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_animal->exist(id)){
-        items_animal->remove(id);
+    if(exist(container.items_animal, id)){
+        remove(container.items_animal, id);
         std::cout<<"Animal with Id "<<id<<" deleted."<<std::endl;
-    }   
+    }
+
 }
 
-void delete_bird(){
+void delete_bird(Container& container){
     std::cout<<"Delete Bird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_bird->exist(id)){
-        items_bird->remove(id);
+    if(exist(container.items_bird, id)){
+        remove(container.items_bird, id);
         std::cout<<"Animal with Id "<<id<<" deleted."<<std::endl;
-    }   
+    }
 }
 
-void delete_flying_bird(){
+void delete_flying_bird(Container& container){
     std::cout<<"Delete FlyingBird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_flying_bird->exist(id)){
-        items_flying_bird->remove(id);
+    if(exist(container.items_flying_bird, id)){
+        remove(container.items_flying_bird, id);
         std::cout<<"FlyingBird with Id "<<id<<" deleted."<<std::endl;
+    } else{
+        std::cout<<"FlyingBird with Id "<<id<<" does not exist."<<std::endl;
     }
 }
 
-void delete_not_flying_birImportantedd(){
+void delete_not_flying_bird(Container& container){
     std::cout<<"Delete NotFlyingBird: "<<std::endl;
     std::cout<<"Enter the Id: ";
     int id;
     std::cin>>id;
 
-    if(items_not_flying_bird->exist(id)){
-        items_not_flying_bird->remove(id);
+    if(exist(container.items_not_flying_bird, id)){
+        remove(container.items_not_flying_bird, id);
         std::cout<<"NotFlyingBird with Id "<<id<<" deleted."<<std::endl;
+    } else{
+        std::cout<<"NotFlyingBird with Id "<<id<<" does not exist."<<std::endl;
     }
 }
 
@@ -385,7 +428,7 @@ void display_select_animal(Animal& animal){
         "E-Eat\n"
         "I-Info\n"
         "Action: ";
-    
+
     char action = '\0';
     std::cin>>action;
     action = toupper(action);
@@ -398,6 +441,8 @@ void display_select_animal(Animal& animal){
             std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
             is_okay = false;
     }
+
+    std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(animal);
@@ -412,7 +457,7 @@ void display_select_bird(Bird& bird){
         "I-Info\n"
         "S-Sing\n"
         "Action: ";
-    
+
     char action = '\0';
     std::cin>>action;
     action = toupper(action);
@@ -426,6 +471,8 @@ void display_select_bird(Bird& bird){
             std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
             is_okay = false;
     }
+
+    std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(bird);
@@ -442,7 +489,7 @@ void display_select_flying_bird(FlyingBird& flying_bird){
         "S-Sing\n"
         "F-Fly\n"
         "Action: ";
-    
+
     char action = '\0';
     std::cin>>action;
     action = toupper(action);
@@ -458,6 +505,8 @@ void display_select_flying_bird(FlyingBird& flying_bird){
             is_okay = false;
     }
 
+    std::cin>>std::ws;
+
     if(!is_okay){
         display_select_animal(flying_bird);
     }
@@ -471,7 +520,7 @@ void display_select_not_flying_bird(FlyingBird& not_flying_bird){
         "I-Info\n"
         "S-Sing\n"
         "Action: ";
-    
+
     char action = '\0';
     std::cin>>action;
     action = toupper(action);
@@ -485,6 +534,8 @@ void display_select_not_flying_bird(FlyingBird& not_flying_bird){
             std::cout<<"Invalid option. Choose a valid option, please!"<<std::endl;
             is_okay = false;
     }
+
+    std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(not_flying_bird);

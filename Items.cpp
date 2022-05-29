@@ -1,36 +1,31 @@
 #include "Items.h"
-#include "Util.cpp"
 
 template<class C>
-Items<C>::Items(){
-    id = 0;
+void append(std::vector<C> &items, C item, Container &container){
+    item.setId(container.last_id);
+    items.push_back(item);
+    container.last_id++;
 }
 
-template<class C>
-void Items<C>::append(C& item){
-    item.id = id;
-    list.push_back(item);
-    id++;
+template<typename C>
+void remove(std::vector<C>& items, C item){
+    items.erase(item);
 }
 
-template<class C>
-void Items<C>::remove(C& item){
-    list.erase(item);
+template<typename C>
+void remove(std::vector<C>& items, int id){
+    int index = getIndex(items, id);
+    items.erase(items.begin() + index);
 }
 
-template<class C>
-void Items<C>::remove(int id){
-
+template<typename C>
+void insert(std::vector<C> &items, int index, C item){
+    items.insert(getItem(items, index), item);
 }
 
-template<class C>
-void Items<C>::insert(int index, C& item){
-    list.insert(getItem(index), item);
-}
-
-template<class C>
-bool Items<C>::exist(const std::string name){
-    for (C& i : list){
+template<typename C>
+bool exist(std::vector<C> &items, const std::string name){
+    for (C& i : items){
         if(i.getName() == name){
             return true;
         }
@@ -38,9 +33,9 @@ bool Items<C>::exist(const std::string name){
     return false;
 }
 
-template<class C>
-bool Items<C>::exist(const int id){
-    for (C& i : list){
+template<typename C>
+bool exist(std::vector<C> &items, const int id){
+    for (C& i : items){
         if(i.getId() == id){
             return true;
         }
@@ -48,41 +43,41 @@ bool Items<C>::exist(const int id){
     return false;
 }
 
-template<class C>
-C Items<C>::getItem(const int index){
-    return list.at(index);
+template<typename C>
+C getItem(std::vector<C>& items, const int index){
+    return items.at(index);
 }
 
-template<class C>
-int Items<C>::getIndex(const int id){
-    for (int i = 0; i<list.size(); i++){
-        if(list.at(i).getId() == id){
+template<typename C>
+int getIndex(std::vector<C>& items, const int id){
+    for (int i = 0; i<items.size(); i++){
+        if(items.at(i).getId() == id){
             return i;
         }
     }
     return -1;
 }
 
-template<class C>
-int Items<C>::getIndex(const std::string name){
-    for (int i = 0; i<list.size(); i++){
-        if(list.at(i).getName() == name){
+template<typename C>
+int getIndex(std::vector<C>& items, const std::string name){
+    for (int i = 0; i<items.size(); i++){
+        if(items.at(i).getName() == name){
             return i;
         }
     }
     return -1;
 }
 
-template<class C>
-void Items<C>::display(){
+template<typename C>
+void display(std::vector<C>& items, Container& container){
     std::vector<std::string> types = {"Animal", "Bird", "FlyingBird", "NotFLying"};
-    std::cout<<"List "<< types[(int) type_of_animal]<<": "<<std::endl;
-    for (const T& x : items){
+    std::cout<<"List "<< types[(int) container.type_of_animal]<<": "<<std::endl;
+    for (const C& x : items){
         std::cout<<x<<std::endl;
     }
 }
 
-template<class C>
-int Items<C>::lenght(){
-
+template<typename C>
+int lenght(const std::vector<C>& items){
+    return items.size();
 }

@@ -5,7 +5,7 @@ Animal::Animal(int id, std::string name, bool isHungry, int age)
 }
 
 std::ostream &operator<<(std::ostream &os, const Animal &animal){
-    os<<"[Animal => {id: "<<animal.id<<"}, name: "<<animal.name<<", isHungry: "<<animal.isHungry<<", age: "<<animal.age<<"}]";
+    os<<"[Animal => {id: "<<animal.id<<"}, name: "<<animal.name<<", isHungry: "<<(animal.isHungry ? "Yes" : "No")<<", age: "<<animal.age<<"}]";
     return os;
 }
 
@@ -16,6 +16,7 @@ std::string Animal::info(){
 
 std::string Animal::blink(){
     std::string ms = name + " is blinking.";
+    return ms;
 }
 
 

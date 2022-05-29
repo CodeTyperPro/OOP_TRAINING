@@ -1,34 +1,41 @@
 #ifndef _ITEMS_H_
 #define _ITEMS_H_
 #include<vector>
-#include "Util.cpp"
+#include "Util.h"
+#include "Types.h"
+#include "Container.h"
 
-enum class Types {
-    Animal = 0,
-    Bird,
-    FlyingBird,
-    NotFlyingBird
-};
+template<typename C>
+void append(std::vector<C> &items, C item, Container& container);
 
-template<class C>
-class Items{
-private:
-    int id;
-    std::vector<C> list;
-public:
-    Items();
-    ~Items();
-    void append(C& item);
-    void remove(C& item);
-    void remove(int id);
-    bool exist(const std::string name);
-    bool exist(const int id);
-    void insert(int index, C& item);
-    C getItem(const int index);
-    int getIndex(const int id);
-    int getIndex(const std::string name);
-    void display();
-    int lenght();
-};
+template<typename C>
+void remove(std::vector<C> items, C item);
+
+template<typename C>
+void remove(std::vector<C>& items, int id);
+
+template<typename C>
+bool exist(std::vector<C>& items, const std::string name);
+
+template<typename C>
+bool exist(std::vector<C>& items, const int id);
+
+template<typename C>
+void insert(std::vector<C>& items, int index, C item);
+
+template<typename C>
+C getItem(std::vector<C>& items, const int index);
+
+template<typename C>
+int getIndex(std::vector<C>& items, const int id);
+
+template<typename C>
+int getIndex(std::vector<C>& items, const std::string name);
+
+template<typename C>
+void display(std::vector<C>& items, Container& container);
+
+template<typename C>
+int lenght(const std::vector<C>& items);
 
 #endif

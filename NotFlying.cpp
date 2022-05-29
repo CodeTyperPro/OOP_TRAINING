@@ -27,6 +27,6 @@ std::string NotFlyingBird::sing(){
 }
 
 std::ostream &operator<<(std::ostream &os, const NotFlyingBird &not_flying_bird){
-    os<<"[NotFlyingBird => {id: "<<not_flying_bird.id<<"}, name: "<<not_flying_bird.name<<", isHungry: "<<not_flying_bird.isHungry<<", age: "<<not_flying_bird.age<<", wings: "<<not_flying_bird.wings<<", arange"<<not_flying_bird.usefulness<<"}]";
+    os<<"[NotFlyingBird => {id: "<<not_flying_bird.id<<"}, name: "<<not_flying_bird.name<<", isHungry: "<<(not_flying_bird.isHungry ? "Yes" : "No")<<", age: "<<not_flying_bird.age<<", wings: "<<not_flying_bird.wings<<", arange"<<not_flying_bird.usefulness<<"}]";
     return os;
 }

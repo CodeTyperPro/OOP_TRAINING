@@ -1,35 +1,13 @@
 #include "Util.h"
-/*
-void createInstance(Container& items){
 
-    switch (items.type_of_animal)
-    {
-        case Types::Animal:
-            items.items_animal = new Animal();
-            break;
-        case Types::Bird:
-            items.items_bird = Bird;
-            break;
-        case Types::FlyingBird:
-            items.items_flying_bird = FlyingBird;
-            break;
-        case Types::NotFlyingBird:
-            items.items_not_flying_bird = NotFlyingBird;
-            break;
-
-        default:
-            std::cout<<"Invalid instance."<<std::endl;
-            break;
-    }
-}*/
-
+// Show the main manu which will give to user, the opportunity to perform all the available operations
 void showMenu(Container& container){
     std::cout<<"\n::: MENU :::";
     std::cout<<"\n\nWelcome to the >Animals Managment System< application!";
     std::cout<<"\n\nPlease select a menu point:";
     std::cout<<"\n"
             "A) Add new animal\n"
-            "L) List all animals\n"
+            "L) List all animals | Select an animal\n"
             "S) Search animal name\n"
             "U) Update animal name\n"
             "D) Delete animal\n"
@@ -51,10 +29,10 @@ void showMenu(Container& container){
             break;
     }
 
-    showMenu(container);
+    showMenu(container); // Call the main menu
 }
 
-// Layout
+// Ask to user the type of animal he wants to work with
 void askTypeAnimal(Container& container){
 
     std::cout<<"QUESTION:"<<std::endl;
@@ -63,7 +41,7 @@ void askTypeAnimal(Container& container){
 
     char option;
     std::cin>>option;
-    option = toupper(option);
+    option = toupper(option); // Always convert the option entered to upper case because of misstypes
 
     bool is_okay = true;
     switch (option)
@@ -79,18 +57,18 @@ void askTypeAnimal(Container& container){
     }
 
     if(is_okay){
-        //createInstance(container);
-        showMenu(container);
+        showMenu(container); // Call the main menu
     } else{
-        askTypeAnimal(container);
+        askTypeAnimal(container); // Ask again the type of animal. The one entered is not valid
     }
 }
 
-
+// Exit the program entirely
 void exit_(){
     exit(0);
 }
 
+// Call the layout to insert a new animal
 void add_new_animal_type(Container& container){
     switch (container.type_of_animal)
     {
@@ -102,6 +80,7 @@ void add_new_animal_type(Container& container){
     }
 }
 
+// List all the animal of any type
 void list_all_animals_type(Container& container){
     switch (container.type_of_animal)
     {
@@ -111,8 +90,30 @@ void list_all_animals_type(Container& container){
         case Types::NotFlyingBird: list_not_flying_birds(container); break;
         default: break;
     }
+    
+    // Execute the selection of an animal to print the equivalent action it can do :)
+    std::cout<<"Enter the index if you wish to select an animal or [S] to skip, please: ";
+    std::cin>>std::ws;
+    std::string option;
+    std::cin>>option;
+
+    if(toupper(option[0]) != 'S'){
+
+        while(!is_number(option)){
+            std::cout<<"Invalid index. Please, enter a valid index: ";
+            std::cin>>option;
+        }
+
+        int index{};
+        std::stringstream os(option);
+        os>>index;
+
+        // Display the action that the given animal is able to do
+        display_actions_types(container, index);
+    }
 }
 
+// Search the animal of any type
 void search_animal_type(Container& container){
     switch (container.type_of_animal)
     {
@@ -124,6 +125,7 @@ void search_animal_type(Container& container){
     }
 }
 
+// Update any animal
 void update_animal_type(Container& container){
     switch (container.type_of_animal)
     {
@@ -135,6 +137,7 @@ void update_animal_type(Container& container){
     }
 }
 
+// Delete any animal
 void delete_animal_type(Container &container){
     switch (container.type_of_animal)
     {

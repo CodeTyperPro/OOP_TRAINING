@@ -5,6 +5,9 @@
 #include "Types.h"
 #include "Container.h"
 
+
+// Templates declarations to perform complete CRUD operations of all entities
+
 template<typename C>
 void append(std::vector<C> &items, C item, Container& container);
 

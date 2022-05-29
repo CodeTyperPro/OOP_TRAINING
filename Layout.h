@@ -33,9 +33,14 @@ void delete_bird(Container &container);
 void delete_flying_bird(Container &container);
 void delete_not_flying_bird(Container &container);
 
-void display_select_animal(Animal& animal);
-void display_select_bird(Bird& bird);
-void display_select_flying_bird(FlyingBird& flying_bird);
-void display_select_not_flying_bird(NotFlyingBird& not_flying_bird);
+void display_actions_types(Container &container, int index);
+bool is_number(std::string str);
+
+void display_select_animal(const Animal animal);
+void display_select_bird(const Bird bird);
+void display_select_flying_bird(const FlyingBird flying_bird);
+void display_select_not_flying_bird(const NotFlyingBird not_flying_bird);
+
+
 
 #endif

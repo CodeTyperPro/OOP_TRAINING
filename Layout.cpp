@@ -3,6 +3,7 @@
 #include "Layout.h"
 #include "Items.cpp"
 #include<iostream>
+#include<sstream>
 
 Animal read_animal(){
     std::cout<<"Reading Animal:"<<std::endl;
@@ -83,7 +84,7 @@ Bird read_bird(){
     }
 
     Bird bird{0, name, is_Hungry, age, wings};
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     return bird;
 }
@@ -140,7 +141,7 @@ FlyingBird read_flying_bird(){
     }
 
     FlyingBird flyingBird {0, name, is_Hungry, age, wings, range};
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     return flyingBird;
 }
@@ -192,7 +193,7 @@ NotFlyingBird read_not_flying_bird(){
     std::cin>>usefulness;
 
     NotFlyingBird notFlyingBird {0, name, is_Hungry, age, wings, usefulness};
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     return notFlyingBird;
 }
@@ -356,6 +357,27 @@ void list_animals(Container& container){
     display(container.items_animal, container);
 }
 
+void display_actions_types(Container &container, int index){
+
+    switch (container.type_of_animal)
+    {
+        case Types::Animal: display_select_animal(getItem(container.items_animal, index)); break;
+        case Types::Bird: display_select_bird(getItem(container.items_bird, index)); break;
+        case Types::FlyingBird: display_select_flying_bird(getItem(container.items_flying_bird, index)); break;
+        case Types::NotFlyingBird: display_select_not_flying_bird(getItem(container.items_not_flying_bird, index)); break;
+        default: break;
+    }
+}
+
+bool is_number(std::string str){
+    for (char c : str){
+        if(c<'0' || c>'9'){
+            return false;
+        }
+    }
+    return true;
+}
+
 void list_birds(Container& container){
     display(container.items_bird, container);
 }
@@ -421,7 +443,7 @@ void delete_not_flying_bird(Container& container){
     }
 }
 
-void display_select_animal(Animal& animal){
+void display_select_animal(Animal animal){
     std::cout<<"What do you want to do with "<<animal.getName()<<"?"<<std::endl;
     std::cout<<"\n"
         "B-Blink\n"
@@ -442,14 +464,14 @@ void display_select_animal(Animal& animal){
             is_okay = false;
     }
 
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(animal);
     }
 }
 
-void display_select_bird(Bird& bird){
+void display_select_bird(Bird bird){
     std::cout<<"What do you want to do with "<<bird.getName()<<"?"<<std::endl;
     std::cout<<"\n"
         "B-Blink\n"
@@ -472,14 +494,14 @@ void display_select_bird(Bird& bird){
             is_okay = false;
     }
 
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(bird);
     }
 }
 
-void display_select_flying_bird(FlyingBird& flying_bird){
+void display_select_flying_bird(FlyingBird flying_bird){
 
     std::cout<<"What do you want to do with "<<flying_bird.getName()<<"?"<<std::endl;
     std::cout<<"\n"
@@ -505,14 +527,14 @@ void display_select_flying_bird(FlyingBird& flying_bird){
             is_okay = false;
     }
 
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(flying_bird);
     }
 }
 
-void display_select_not_flying_bird(FlyingBird& not_flying_bird){
+void display_select_not_flying_bird(NotFlyingBird not_flying_bird){
     std::cout<<"What do you want to do with "<<not_flying_bird.getName()<<"?"<<std::endl;
     std::cout<<"\n"
         "B-Blink\n"
@@ -535,7 +557,7 @@ void display_select_not_flying_bird(FlyingBird& not_flying_bird){
             is_okay = false;
     }
 
-    std::cin>>std::ws;
+    //std::cin>>std::ws;
 
     if(!is_okay){
         display_select_animal(not_flying_bird);
